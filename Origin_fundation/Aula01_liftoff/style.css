@@ -1,0 +1,16 @@
+/* RESERT : retira todas as configurações de espações, e tamanhos pré existentes no navegador */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+
+#header {
+  height: 4.5rem;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
