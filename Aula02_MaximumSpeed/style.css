@@ -1,0 +1,324 @@
+/* RESERT : retira todas as configurações de espações, e tamanhos pré existentes no navegador */
+
+/* ================ RESET =========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: 0;
+}
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+  height: auto; /* auto: automaticamente, para se adaptar ao 100% da largura (width) */
+}
+
+/* ================ VARIABLES ================ */
+
+:root {
+  --header-height: 4.5rem;
+
+  /* colors */
+  --hue: 159;
+  /* HSL color mode  */
+  --base-color: hsl(var(--hue) 36% 57%);
+  --base-color-second: hsl(var(--hue) 65% 88%);
+  --base-color-alt: hsl(var(--hue) 57% 53%);
+  --title-color: hsl(var(--hue) 41% 10%);
+  --text-color: hsl(0 0% 46%);
+  --text-color-light: hsl(0 0% 98%);
+  --body-color: hsl(0 0% 98%);
+  /*  Declarando variável (acima)   */
+}
+
+/* ================ BASE ================ */
+
+body {
+  font: 400 1rem 'DM Sans', sans-serif;
+  color: var(
+    --text-color
+  ); /* Chamando a variável que foi declarada (variável que define a cor do texto) var(nome da variável) */
+  background: var(
+    --body-color
+  ); /* Chamando a variável que foi declarada (cor do body) var(nome da variável) */
+  -webkit-font-smoothing: antialiased; /* Propriedade do Chroom que deixa os texto com a tonalidade mais clara */
+}
+
+.title {
+  font: 700 1.875rem 'Poppins', sans-serif;
+  color: var(--title-color);
+  -webkit-font-smoothing: auto; /* Propriedade do Chroom que deixa os texto com a tonalidade, minimamente, mais clara */
+}
+
+.button {
+  background-color: var(--base-color);
+  color: var(--text-color-light);
+  height: 3.5rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 2rem;
+  border-radius: 0.25rem;
+  font: 500 1rem 'DM Sans', sans-serif;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: var(--base-color-alt);
+}
+
+.divider-1 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 36%, 57%, 1),
+    hsla(var(--hue), 65%, 88%, 0.34)
+  );
+}
+
+.divider-2 {
+  height: 1px;
+  background: linear-gradient(
+    270deg,
+    hsla(var(--hue), 65%, 88%, 0.34),
+    hsla(var(--hue), 36%, 57%, 1)
+  );
+}
+
+/* ================ LAYOUT ============*/
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 2rem; /* O Gap: coloca um espaço nos elementos que recebem grid   */
+}
+
+section {
+  padding: 5rem 0;
+}
+
+section .title {
+  margin-bottom: 1rem;
+}
+#header {
+  border-bottom: 1px solid #e4e4e4; /* border: adiciona bordas em determinado elemento, container, espaço. bottom: na região abaixo, embaixo;   */
+  margin-bottom: 2rem;
+  display: flex;
+
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background-color: var(--body-color);
+}
+
+main {
+  margin-top: calc(var(--header-height) + 2rem);
+}
+
+/* =========== LOGO ========= */
+
+.logo {
+  font: 700 1.35rem 'Poppins', sans-serif;
+  color: var(--title-color);
+}
+.logo span {
+  color: var(--base-color);
+}
+
+/* =========== NEVAGATION ========= */
+
+nav {
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Alinha os conteúdos para o começo(direita) ou fim (direita) space-between: joga uma elemento no final do cotainer, enfim, possií inumeras propriedades.  */
+  width: 100%;
+}
+
+nav ul li {
+  text-align: center;
+}
+
+nav ul li a {
+  transition: color 0.2s;
+  position: relative;
+}
+
+nav ul li a:hover {
+  color: var(--base-color);
+}
+
+nav ul li a::after {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: var(--base-color);
+
+  position: absolute;
+  left: 0;
+  bottom: -1.5rem;
+
+  transition: width 0.2s;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+nav .menu {
+  opacity: 0;
+  visibility: hidden; /* visibilidade(atributo)escondido(valor do atributo)   */
+}
+
+/* =========== MOSTRAR MENU =============  */
+
+/* Quando nav for show, procure o elemento que possui a classe menu)   */
+nav.show .menu {
+  opacity: 1;
+  visibility: visible;
+
+  background: var(--body-color);
+
+  height: 100vh; /* vh: altura do dispositivo  fragetada 100 pedacinhos (unidade de medida) da 100 unidades do dispositivo */
+
+  width: 100vw; /* vw: largura do dispositivo  fragetada 100 pedacinhos (unidade de medida) da 100 unidades do dispositivo */
+
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+nav.show .menu {
+  display: grid;
+  place-content: center;
+}
+
+nav.show ul.grid {
+  gap: 4rem;
+}
+
+/* TOGGLE MENU */
+
+.toggle {
+  color: var(--base-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+nav .icon-close {
+  visibility: hidden;
+  opacity: 0;
+
+  position: absolute;
+  right: 1.5rem;
+
+  /*    Transição bacaninha     */
+}
+
+nav.show div.icon-close {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ================ HOME ============ */
+
+#home {
+  overflow: hidden;
+} /*  overflow: transborda as coisas     */
+
+#home .container {
+  margin: 0 auto;
+}
+
+#home .image {
+  position: relative;
+}
+
+#home .image::before {
+  /* propiedade de CSS que cria um elemento fantasma antes da imagem   */
+  content: ' ';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -16.8%;
+  left: 16.7%;
+  z-index: 0; /* eixoX: horizotal -- ; eixoY: vertical I; eixoZ: eixo de profundidade;        */
+}
+
+#home .image img {
+  position: relative;
+  right: 2.93rem;
+}
+
+#home .image img,
+#home .image::before {
+  border-radius: 0.25rem;
+}
+
+#home .text {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#home .text h1 {
+  margin-bottom: 1rem;
+}
+
+#home .text p {
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+/* =========== ABOUT =============  */
+
+#about {
+  overflow: hidden;
+} /*  overflow: transborda as coisas     */
+
+#about {
+  background: white;
+}
+
+#about .container {
+  margin: 0 auto;
+}
+
+#about .image {
+  position: relative;
+}
+
+#about .image::before {
+  /* propiedade de CSS que cria um elemento fantasma antes da imagem   */
+  content: ' ';
+  height: 100%;
+  width: 100%;
+  background: var(--base-color-second);
+  position: absolute;
+  top: -8.3%;
+  left: -33%;
+  z-index: 0; /* eixoX: horizotal -- ; eixoY: vertical I; eixoZ: eixo de profundidade;        */
+}
+
+#about .image img {
+  position: relative;
+}
+
+#about .image img,
+#about .image::before {
+  border-radius: 0.25rem;
+}
+
+#about .text {
+  margin: 0 auto;
+}
